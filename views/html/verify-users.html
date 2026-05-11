@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verifikasi Pengguna | SI-AKSI</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <a href="dashboard-admin.html" class="nav-brand">SI-AKSI (Admin)</a>
+        <div class="nav-auth">
+            <a href="index.html" class="btn-nav-login">Logout</a>
+        </div>
+    </nav>
+
+    <div class="login-container dashboard-container" style="max-width: 900px !important;">
+        <div class="login-card dashboard-card">
+            <h2>Verifikasi Pengguna Baru</h2>
+            <p class="subtitle">Daftar pengguna yang menunggu persetujuan akses.</p>
+            
+            <div style="overflow-x: auto;">
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>Nama Lengkap</th>
+                            <th>Email</th>
+                            <th>Status</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody id="user-table-body">
+                        </tbody>
+                </table>
+            </div>
+
+            <br>
+            <button type="button" class="login-btn" onclick="window.location.href='dashboard-admin.html'" style="background-color: var(--text-light); margin-top: 20px;">
+                Kembali ke Dashboard
+            </button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
