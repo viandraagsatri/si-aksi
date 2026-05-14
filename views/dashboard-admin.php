@@ -16,16 +16,17 @@ $users = $userModel->getAllUsers();
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <title>Admin Panel | SI-AKSI</title>
+    <title>Dashboard | SI-AKSI</title>
     <link rel="stylesheet" href="../public/css/global.css">
-    <link rel="stylesheet" href="../public/css/dashboard.css">
+    <link rel="stylesheet" href="../public/css/dashboard-admin.css">
 </head>
 <body>
     <nav class="navbar">
-        <a href="dashboard-admin.php" class="nav-brand">SI-AKSI Admin</a>
+        <a href="dashboard-admin.php" class="nav-brand">SI-AKSI</a>
         <div class="nav-auth">
-            <span>Admin: <?php echo $_SESSION['fullname']; ?></span>
-            <a href="../controllers/process.php?action=logout" class="btn-nav-login">Logout</a>
+            <span>Admin: <?php echo $_SESSION['fullname']; ?>!</span>
+            <a href="about.php" class="btn-nav">About SI-AKSI</a>
+            <a href="../controllers/process.php?action=logout" class="btn-nav">Logout</a>
         </div>
     </nav>
 

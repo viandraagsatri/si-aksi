@@ -10,13 +10,10 @@
 <body>
     <nav class="navbar">
         <a href="login.php" class="nav-brand">SI-AKSI</a>
-        <ul class="nav-links">
-            <li><a href="#">About SI-AKSI</a></li>
-            <li><a href="#">Meet Our Team</a></li>
-        </ul>
         <div class="nav-auth">
-            <a href="login.php" class="btn-nav-login">Login</a>
-            <a href="register.php" class="btn-nav-register">Daftar</a>
+            <a href="about.php" class="btn-nav">About SI-AKSI</a>
+            <a href="login.php" class="btn-nav">Login</a>
+            <a href="register.php" class="btn-nav">Daftar</a>
         </div>
     </nav>
 

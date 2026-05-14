@@ -51,7 +51,7 @@ class AuthController {
             $user = $this->userModel->login($email);
 
             if ($user && password_verify($password, $user['password'])) {
-                if ($user['is_verified'] || $user['role'] === 'admin') {
+                // if ($user['is_verified'] || $user['role'] === 'admin') {
                     $_SESSION['user_id'] = $user['id'];
                     $_SESSION['fullname'] = $user['fullname'];
                     $_SESSION['role'] = $user['role'];
@@ -62,9 +62,6 @@ class AuthController {
                         header("Location: ../views/dashboard-user.php");
                     }
                     exit();
-                } else {
-                    echo "<script>alert('AKSES DITOLAK: Akun Anda belum diverifikasi oleh Administrator.'); window.location.href='../views/login.php';</script>";
-                }
             } else {
                 echo "<script>alert('LOGIN GAGAL: Email atau Kata Sandi salah!'); window.location.href='../views/login.php';</script>";
             }

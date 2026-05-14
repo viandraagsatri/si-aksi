@@ -61,10 +61,6 @@ body {
     transition: color 0.3s ease;
 }
 
-.nav-links a:hover, .nav-links a.active {
-    color: var(--text-dark);
-}
-
 .dropdown-content {
     display: none;
     position: absolute;
@@ -96,9 +92,10 @@ body {
 .nav-auth {
     display: flex;
     gap: 10px;
+    align-items: center;
 }
 
-.btn-nav-login {
+.btn-nav {
     text-decoration: none;
     color: var(--text-dark);
     font-weight: 600;
@@ -106,7 +103,7 @@ body {
     font-size: 14px;
 }
 
-.btn-nav-register {
+.btn-nav:hover {
     text-decoration: none;
     background-color: var(--text-dark);
     color: #ffffff;
@@ -115,10 +112,6 @@ body {
     font-weight: 600;
     font-size: 14px;
     transition: 0.3s;
-}
-
-.btn-nav-register:hover {
-    background-color: var(--text-light);
 }
 
 .alert-box {

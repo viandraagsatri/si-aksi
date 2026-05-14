@@ -9,23 +9,11 @@
 </head>
 <body>
     <nav class="navbar">
-        <a href="index.html" class="nav-brand">SI-AKSI</a>
-        <ul class="nav-links">
-            <li><a href="#">About SI-AKSI</a></li>
-            <li>
-                <a href="#">Kategori ▾</a>
-                <div class="dropdown-content">
-                    <a href="#">Hardware</a>
-                    <a href="#">Software & Internet</a>
-                    <a href="#">Cyber Security</a>
-                    <a href="#">Artificial Intelligence</a>
-                </div>
-            </li>
-            <li><a href="team.html">Meet Our Team</a></li>
-        </ul>
+        <a href="index.php" class="nav-brand">SI-AKSI</a>  
         <div class="nav-auth">
-            <a href="login.php" class="btn-nav-login">Login</a>
-            <a href="register.php" class="btn-nav-register">Daftar</a>
+            <a href="about.php" class="btn-nav">About SI-AKSI</a>
+            <a href="login.php" class="btn-nav">Login</a>
+            <a href="register.php" class="btn-nav">Daftar</a>
         </div>
     </nav>
 
