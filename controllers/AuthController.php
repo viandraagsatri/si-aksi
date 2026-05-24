@@ -44,26 +44,42 @@ class AuthController {
 
     public function login() {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            $email = $_POST['email'];
+            $email = trim($_POST['email']);
             $password = $_POST['password'];
 
             $user = $this->userModel->login($email);
 
-            if ($user && password_verify($password, $user['password'])) {
-                // if ($user['is_verified'] || $user['role'] === 'admin') {
-                    $_SESSION['user_id'] = $user['id'];
-                    $_SESSION['fullname'] = $user['fullname'];
-                    $_SESSION['role'] = $user['role'];
+            if (!$user) {
 
-                    if ($user['role'] === 'admin') {
-                        header("Location: ../views/dashboard-admin.php");
-                    } else {
-                        header("Location: ../views/dashboard-user.php");
-                    }
-                    exit();
-            } else {
-                echo "<script>alert('LOGIN GAGAL: Email atau Kata Sandi salah!'); window.location.href='../views/login.php';</script>";
+                echo "<script>alert('LOGIN GAGAL: Email tidak terdaftar!'); window.location.href='../views/login.php';</script>";
+                exit();
             }
+
+            if (!password_verify($password, $user['password'])) {
+
+                echo "<script>alert('LOGIN GAGAL: Kata sandi salah!'); window.location.href='../views/login.php';</script>";
+                exit();
+            }
+
+            if (!$user['is_verified'] && $user['role'] !== 'admin') {
+
+                echo "<script>alert('Akun belum diverifikasi admin!'); window.location.href='../views/login.php';</script>";
+                exit();
+            }
+
+            session_regenerate_id(true);
+
+            $_SESSION['user_id'] = $user['id'];
+            $_SESSION['fullname'] = $user['fullname'];
+            $_SESSION['role'] = $user['role'];
+            $_SESSION['last_activity'] = time();
+
+            if ($user['role'] === 'admin') {
+                header("Location: ../views/dashboard-admin.php");
+            } else {
+                header("Location: ../views/dashboard-user.php");
+            }
+            exit();
         }
     }
 
@@ -78,6 +94,15 @@ class AuthController {
     }
 
     public function logout() {
+        $_SESSION = [];
+        session_unset();
+        if(ini_get("session.use_cookies")) {
+            $params = session_get_cookie_params();
+            setcookie(session_name(), '', time() - 42000,
+                $params["path"], $params["domain"],
+                $params["secure"], $params["httponly"]
+            );
+        }
         session_destroy();
         header("Location: ../views/login.php");
         exit();
