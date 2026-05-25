@@ -17,8 +17,7 @@ if (isset($_SESSION['user_id'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Daftar Akun | SI-AKSI</title>
-    <link rel="stylesheet" href="../public/css/global.css">
-    <link rel="stylesheet" href="../public/css/auth.css">
+    <link rel="stylesheet" href="../public/css/style.css">
 </head>
 <body>
     <nav class="navbar">
