@@ -122,7 +122,7 @@ body{
     width:100%;
     max-width:420px;
     padding:20px;
-    margin:auto;
+    margin:50px auto;
 }
 
 .login-card,
@@ -215,7 +215,7 @@ body{
 .hero-text h1{
     font-size:2.5rem;
     margin-bottom:10px;
-    color:var(--primary);
+    color:white;
 }
 
 .content-wrapper{
@@ -278,9 +278,11 @@ body{
     font-size:.9rem;
 }
 
-
-
 .dashboard-container{
+    width:100%;
+}
+
+.admin-dashboard .dashboard-container{
     max-width:1200px;
     margin:auto;
     padding:40px;
@@ -431,8 +433,10 @@ td{
 
 .quiz-wrapper{
     width:100%;
+    min-height:calc(100vh - 90px);
     display:flex;
     justify-content:center;
+    align-items:center;
 }
 
 .quiz-card{
