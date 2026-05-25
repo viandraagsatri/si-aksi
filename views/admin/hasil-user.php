@@ -16,8 +16,7 @@ $results = $adminModel->getUserResults();
     <title>Monitoring Hasil Kuis | SI-AKSI</title>
     <link rel="stylesheet" href="../../public/css/style.css">
 </head>
-<body>
-    <body class="admin-dashboard">
+<body class="admin-dashboard">
     <div class="dashboard-container">
         <h2>Monitoring Hasil Skor Kuis Pengguna</h2>
         <a href="dashboard.php">← Kembali ke Dashboard</a>
