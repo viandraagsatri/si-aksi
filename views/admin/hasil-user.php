@@ -14,10 +14,10 @@ $results = $adminModel->getUserResults();
 <head>
     <meta charset="UTF-8">
     <title>Monitoring Hasil Kuis | SI-AKSI</title>
-    <link rel="stylesheet" href="../../public/css/global.css">
-    <link rel="stylesheet" href="../../public/css/dashboard-admin.css">
+    <link rel="stylesheet" href="../../public/css/style.css">
 </head>
 <body>
+    <body class="admin-dashboard">
     <div class="dashboard-container">
         <h2>Monitoring Hasil Skor Kuis Pengguna</h2>
         <a href="dashboard.php">← Kembali ke Dashboard</a>
