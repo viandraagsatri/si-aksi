@@ -24,10 +24,10 @@ if($editId) {
 <head>
     <meta charset="UTF-8">
     <title>CRUD Soal Kuis | SI-AKSI</title>
-    <link rel="stylesheet" href="../../public/css/global.css">
-    <link rel="stylesheet" href="../../public/css/dashboard-admin.css">
+    <link rel="stylesheet" href="../../public/css/style.css">
 </head>
 <body>
+    <body class="admin-dashboard">
     <div class="dashboard-container" style="max-width:1000px;">
         <h2>CRUD Soal Kuis</h2>
         <a href="dashboard.php">← Kembali ke Dashboard</a>
@@ -40,8 +40,11 @@ if($editId) {
             <label>Kategori:</label>
             <select name="category_id" required style="padding:5px;">
                 <?php foreach($categories as $c): ?>
-                    <option value="<?= $c['id']; ?>" <?= $c['id'] == $eq['category_id'] ? 'selected' : ''; ?>><?= $c['name']; ?></option>
-                <?php endnav_brandforeach; ?>
+                    <option value="<?= $c['id']; ?>"
+                        <?= $c['id'] == $eq['category_id'] ? 'selected' : ''; ?>>
+                        <?= $c['name']; ?>
+                    </option>
+                <?php endforeach; ?>
             </select>
 
             <label>Kesulitan (easy/medium/hard):</label>
