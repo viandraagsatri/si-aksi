@@ -17,10 +17,9 @@ $users = $userModel->getAllUsers();
 <head>
     <meta charset="UTF-8">
     <title>Dashboard | SI-AKSI</title>
-    <link rel="stylesheet" href="../public/css/global.css">
-    <link rel="stylesheet" href="../public/css/dashboard-admin.css">
+    <link rel="stylesheet" href="../public/css/style.css">
 </head>
-<body>
+<body class="admin-dashboard">
     <nav class="navbar">
         <a href="dashboard-admin.php" class="nav-brand">SI-AKSI</a>
         <div class="nav-auth">
