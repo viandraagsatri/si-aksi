@@ -19,8 +19,7 @@ $editName = $_GET['edit_name'] ?? '';
     <title>CRUD Kategori | SI-AKSI</title>
     <link rel="stylesheet" href="../../public/css/style.css">
 </head>
-<body>
-    <body class="admin-dashboard">
+<body class="admin-dashboard">
     <div class="dashboard-container">
         <h2>CRUD Kategori Kuis</h2>
         <a href="dashboard.php">← Kembali ke Dashboard</a>
