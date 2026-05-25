@@ -9,8 +9,7 @@ checkLogin(); checkAdmin();
     <title>Admin Dashboard | SI-AKSI</title>
     <link rel="stylesheet" href="../../public/css/style.css">
 </head>
-<body>
-    <body class="admin-dashboard">
+<body class="admin-dashboard">
     <nav class="navbar">
         <a href="dashboard.php" class="nav-brand">SI-AKSI Admin Panel</a>
         <div class="nav-auth">
