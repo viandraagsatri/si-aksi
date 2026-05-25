@@ -26,8 +26,7 @@ if($editId) {
     <title>CRUD Soal Kuis | SI-AKSI</title>
     <link rel="stylesheet" href="../../public/css/style.css">
 </head>
-<body>
-    <body class="admin-dashboard">
+<body class="admin-dashboard">
     <div class="dashboard-container" style="max-width:1000px;">
         <h2>CRUD Soal Kuis</h2>
         <a href="dashboard.php">← Kembali ke Dashboard</a>
