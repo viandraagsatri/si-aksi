@@ -8,11 +8,10 @@ checkLogin();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard | SI-AKSI</title>
-    <link rel="stylesheet" href="../public/css/global.css">
-    <link rel="stylesheet" href="../public/css/dashboard-user.css">
+    <link rel="stylesheet" href="../public/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
-<body>
+<body class="user-dashboard">
     <nav class="navbar">
         <a href="dashboard-user.php" class="nav-brand">SI-AKSI</a>
         <ul class="nav-links">
