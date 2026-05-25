@@ -16,8 +16,7 @@ $users = $adminModel->getAllUsers();
     <title>Verifikasi User | SI-AKSI</title>
     <link rel="stylesheet" href="../../public/css/style.css">
 </head>
-<body>
-    <body class="admin-dashboard">
+<body class="admin-dashboard">
     <div class="dashboard-container">
         <h2>Manajemen & Verifikasi Pengguna</h2>
         <a href="dashboard.php">← Kembali ke Dashboard</a>
