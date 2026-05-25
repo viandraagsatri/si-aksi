@@ -17,10 +17,10 @@ $editName = $_GET['edit_name'] ?? '';
 <head>
     <meta charset="UTF-8">
     <title>CRUD Kategori | SI-AKSI</title>
-    <link rel="stylesheet" href="../../public/css/global.css">
-    <link rel="stylesheet" href="../../public/css/dashboard-admin.css">
+    <link rel="stylesheet" href="../../public/css/style.css">
 </head>
 <body>
+    <body class="admin-dashboard">
     <div class="dashboard-container">
         <h2>CRUD Kategori Kuis</h2>
         <a href="dashboard.php">← Kembali ke Dashboard</a>
