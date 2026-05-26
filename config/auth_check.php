@@ -1,12 +1,19 @@
 <?php
-session_start();
-$timeout = 1800;
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+$timeout = 8400;
 
 if (isset($_SESSION['last_activity'])) {
     if ((time() - $_SESSION['last_activity']) > $timeout) {
         session_unset();
         session_destroy();
-        echo "<script>alert('Session telah habis. Silakan login kembali.'); window.location.href='../views/login.php';</script>";
+
+        echo "<script>
+            alert('Session telah habis. Silakan login kembali.');
+            window.location.href='../views/login.php';
+        </script>";
         exit();
     }
 }
