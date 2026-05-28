@@ -1,11 +1,13 @@
 <?php
 require_once '../../config/auth_check.php';
-checkLogin(); checkAdmin();
+checkLogin(); 
+checkAdmin();
 ?>
 <!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard | SI-AKSI</title>
     <link rel="stylesheet" href="../../public/css/style.css">
 </head>
@@ -42,7 +44,7 @@ checkLogin(); checkAdmin();
                 <p>📝 Kelola</p>
             </div>
 
-            <div class="stat-card" onclick="window.location.href='hasil-user.php'" style="cursor:pointer;">
+            <div class="stat-card" onclick="window.location.href='hasil.php'" style="cursor:pointer;">
                 <h3>Monitoring Hasil User</h3>
                 <p>📊 Lihat</p>
             </div>

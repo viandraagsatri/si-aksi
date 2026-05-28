@@ -26,7 +26,7 @@ $category = mysqli_real_escape_string($koneksi, $data['category']);
 $score = (int)$data['score'];
 $total = (int)$data['total'];
 
-$query = "INSERT INTO quiz_results(user_id, fullname, category, score, total_questions)
+$query = "INSERT INTO quiz_results (user_id, category_id, score, total_questions) VALUES (?, ?, ?, ?)";
 VALUES('$user_id','$fullname','$category','$score','$total')";
 
 $insert = mysqli_query($koneksi, $query);

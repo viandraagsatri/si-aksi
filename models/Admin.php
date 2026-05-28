@@ -21,7 +21,7 @@ class Admin {
 
     public function getUserResults() {
         $query = "SELECT u.fullname, u.email, c.name as category_name, q.score, q.total_questions, q.created_at 
-                  FROM quiz_scores q
+                  FROM quiz_results q
                   JOIN users u ON q.user_id = u.id
                   JOIN categories c ON q.category_id = c.id
                   ORDER BY q.created_at DESC";
