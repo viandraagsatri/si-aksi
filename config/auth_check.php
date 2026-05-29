@@ -3,7 +3,7 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-$timeout = 8400;
+$timeout = 300;
 
 if (isset($_SESSION['last_activity'])) {
     if ((time() - $_SESSION['last_activity']) > $timeout) {
@@ -12,7 +12,7 @@ if (isset($_SESSION['last_activity'])) {
 
         echo "<script>
             alert('Session telah habis. Silakan login kembali.');
-            window.location.href='../views/login.php';
+            window.location.href='../login.php';
         </script>";
         exit();
     }
@@ -22,14 +22,14 @@ $_SESSION['last_activity'] = time();
 
 function checkLogin() {
     if (!isset($_SESSION['user_id'])) {
-        header("Location: ../views/login.php");
+        header("Location: ../login.php");
         exit();
     }
 }
 
 function checkAdmin() {
     if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
-        header("Location: ../views/dashboard-user.php");
+        header("Location: ../views/user/dashboard.php");
         exit();
     }
 }

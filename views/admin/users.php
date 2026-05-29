@@ -19,7 +19,9 @@ $users = $adminModel->getAllUsers();
 <body class="admin-dashboard">
     <div class="dashboard-container">
         <h2>Manajemen & Verifikasi Pengguna</h2>
-        <a href="dashboard.php">← Kembali ke Dashboard</a>
+        <a href="dashboard.php" class="back-btn">
+            ← Kembali ke Dashboard
+        </a>
         <br><br>
         <div class="table-container">
             <table>
@@ -43,9 +45,9 @@ $users = $adminModel->getAllUsers();
                         </td>
                         <td>
                             <?php if(!$user['is_verified']): ?>
-                                <a href="../../controllers/AdminController.php?action=approve&id=<?= $user['id']; ?>" class="btn-approve" style="background-color: var(--accent); padding: 5px 10px; border-radius:5px; text-decoration:none; color:white;">Approve Akun</a>
+                                <a href="../../controllers/AdminController.php?action=approve&id=<?= $user['id']; ?>" class="btn-approve">Approve Akun</a>
                             <?php else: ?>
-                                <span style="color:green;">✓ Terverifikasi</span>
+                                <span>✓ Terverifikasi</span>
                             <?php endif; ?>
                         </td>
                     </tr>

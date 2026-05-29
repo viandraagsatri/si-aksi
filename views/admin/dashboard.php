@@ -1,8 +1,9 @@
 <?php
 require_once '../../config/auth_check.php';
-checkLogin(); 
+checkLogin();
 checkAdmin();
 ?>
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -13,7 +14,7 @@ checkAdmin();
 </head>
 <body class="admin-dashboard">
     <nav class="navbar">
-        <a href="dashboard.php" class="nav-brand">SI-AKSI Admin Panel</a>
+        <a href="admin/dashboard.php" class="nav-brand">SI-AKSI Admin Panel</a>
         <div class="nav-auth">
             <a href="../../controllers/process.php?action=logout" class="btn-nav">
                 Logout
@@ -29,24 +30,24 @@ checkAdmin();
 
         <div class="stats-grid">
 
-            <div class="stat-card" onclick="window.location.href='users.php'" style="cursor:pointer;">
+            <div class="stat-card" onclick="window.location.href='users.php'">
                 <h3>Verifikasi & Manajemen User</h3>
-                <p>👤 Kelola</p>
+                <p>👤 Kelola User</p>
             </div>
 
-            <div class="stat-card" onclick="window.location.href='kategori.php'" style="cursor:pointer;">
-                <h3>CRUD Kategori Kuis</h3>
-                <p>📁 Kelola</p>
+            <div class="stat-card" onclick="window.location.href='kategori.php'">
+                <h3>Kategori Kuis</h3>
+                <p>📁 Kelola Kategori</p>
             </div>
 
-            <div class="stat-card" onclick="window.location.href='soal.php'" style="cursor:pointer;">
-                <h3>CRUD Soal Kuis</h3>
-                <p>📝 Kelola</p>
+            <div class="stat-card" onclick="window.location.href='soal.php'">
+                <h3>Soal Kuis</h3>
+                <p>📝 Kelola Soal</p>
             </div>
 
-            <div class="stat-card" onclick="window.location.href='hasil.php'" style="cursor:pointer;">
+            <div class="stat-card" onclick="window.location.href='hasil.php'">
                 <h3>Monitoring Hasil User</h3>
-                <p>📊 Lihat</p>
+                <p>📊 Lihat Hasil</p>
             </div>
 
         </div>

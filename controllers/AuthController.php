@@ -68,9 +68,9 @@ class AuthController {
             $_SESSION['last_activity'] = time();
 
             if ($user['role'] === 'admin') {
-                header("Location: ../views/dashboard-admin.php");
+                header("Location: ../views/admin/dashboard.php");
             } else {
-                header("Location: ../views/dashboard-user.php");
+                header("Location: ../views/user/dashboard.php");
             }
             exit();
 
@@ -89,7 +89,7 @@ class AuthController {
         checkAdmin();
         if (isset($_GET['id'])) {
             if ($this->userModel->approveUser($_GET['id'])) {
-                echo "<script>alert('User berhasil diverifikasi!'); window.location.href='../views/dashboard-admin.php';</script>";
+                echo "<script>alert('User berhasil diverifikasi!'); window.location.href='../views/admin/dashboard.php';</script>";
             }
         }
     }

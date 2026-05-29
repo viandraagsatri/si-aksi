@@ -19,9 +19,9 @@ session_start();
             <?php if (isset($_SESSION['user_id'])): ?>
                 <li>
                     <?php if ($_SESSION['role'] == 'admin'): ?>
-                        <a href="dashboard-admin.php" class="btn-nav">Dashboard</a>
+                        <a href="admin/dashboard.php" class="btn-nav">Dashboard</a>
                     <?php else: ?>
-                        <a href="dashboard-user.php" class="btn-nav">Dashboard</a>
+                        <a href="user/dashboard.php" class="btn-nav">Dashboard</a>
                     <?php endif; ?>
                 </li>
             <?php endif; ?>

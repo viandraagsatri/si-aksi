@@ -41,6 +41,10 @@ class AdminController {
         }
     }
 
+    public function searchQuestions($keyword) {
+        return $this->questionModel->searchQuestions($keyword);
+    }
+
     public function getQuestions() {
         return $this->questionModel->getAllQuestions();
     }

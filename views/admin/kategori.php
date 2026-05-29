@@ -35,28 +35,19 @@ $categories = $query->fetchAll(PDO::FETCH_ASSOC);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CRUD Kategori Kuis | SI-AKSI</title>
     <link rel="stylesheet" href="../../public/css/style.css">
-    <style>
-        /* Penyelarasan tema warna earth-tone */
-        body { background-color: #fcedec; font-family: 'Poppins', sans-serif; }
-        .back-link { color: #7a4b4b; text-decoration: none; font-weight: bold; font-size: 14px; display: inline-block; mb: 15px; }
-        .back-link:hover { color: #b87373; }
-        .btn-submit-custom { background-color: #7a4b4b; color: white; border: none; padding: 8px 20px; border-radius: 5px; cursor: pointer; font-weight: 600; }
-        .btn-submit-custom:hover { background-color: #5c3838; }
-        .action-link { text-decoration: none; color: #7a4b4b; font-weight: 600; margin: 0 5px; }
-        .action-link:hover { color: #b87373; }
-    </style>
 </head>
 <body class="admin-dashboard">
 
-    <div class="dashboard-container" style="padding: 40px; max-width: 1100px; margin: 0 auto;">
-        <a href="../dashboard-admin.php" class="back-link">← Kembali ke Dashboard</a>
+    <div class="dashboard-container">
+        <a href="dashboard.php" class="back-btn">
+            ← Kembali ke Dashboard
+        </a>
+        <h2>CRUD Kategori Kuis</h2>
         
-        <h2 style="color: #7a4b4b; margin-top: 10px; margin-bottom: 25px;">CRUD Kategori Kuis</h2>
-        
-        <div class="table-container" style="padding: 20px; margin-bottom: 30px; background: white; border-radius: 10px;">
-            <form action="kategori.php" method="POST" style="display: flex; gap: 15px; align-items: center;">
-                <label for="name" style="font-weight: 600; color: #555;">Nama Kategori:</label>
-                <input type="text" id="name" name="name" required style="padding: 8px; border: 1px solid #ccc; border-radius: 5px; width: 300px;">
+        <div class="table-container">
+            <form action="kategori.php" method="POST">
+                <label for="name">Nama Kategori:</label>
+                <input type="text" id="name" name="name" required>
                 <button type="submit" name="add_category" class="btn-submit-custom">Tambah Kategori</button>
             </form>
         </div>
@@ -65,15 +56,15 @@ $categories = $query->fetchAll(PDO::FETCH_ASSOC);
             <table>
                 <thead>
                     <tr>
-                        <th width="10%">ID</th>
-                        <th width="40%">Nama Kategori</th>
-                        <th width="30%">Slug URL (Otomatis)</th>
-                        <th width="20%">Aksi</th>
+                        <th>ID</th>
+                        <th>Nama Kategori</th>
+                        <th>Slug URL (Otomatis)</th>
+                        <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php if (empty($categories)): ?>
-                        <tr><td colspan="4" style="text-center; color: #ccc;">Belum ada kategori.</td></tr>
+                        <tr><td colspan="4">Belum ada kategori.</td></tr>
                     <?php endif; ?>
 
                     <?php foreach($categories as $cat): 
@@ -81,10 +72,10 @@ $categories = $query->fetchAll(PDO::FETCH_ASSOC);
                     ?>
                     <tr>
                         <td><?php echo $cat['id']; ?></td>
-                        <td style="font-weight: 600; color: #555;"><?php echo htmlspecialchars($cat['name']); ?></td>
-                        <td style="color: #888; font-style: italic;">quiz.php?kategori=<?php echo $slug_otomatis; ?></td>
+                        <td><?php echo htmlspecialchars($cat['name']); ?></td>
+                        <td>quiz.php?kategori=<?php echo $slug_otomatis; ?></td>
                         <td>
-                            <a href="kategori.php?action=delete&id=<?php echo $cat['id']; ?>" class="action-link" onclick="return confirm('Yakin ingin menghapus kategori ini?');" style="color: #c0392b;">Hapus</a>
+                            <a href="kategori.php?action=delete&id=<?php echo $cat['id']; ?>" class="btn-submit-custom" onclick="return confirm('Yakin ingin menghapus kategori ini?');">Hapus</a>
                         </td>
                     </tr>
                     <?php endforeach; ?>

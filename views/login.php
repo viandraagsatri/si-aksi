@@ -3,9 +3,9 @@ session_start();
 
 if (isset($_SESSION['user_id'])) {
     if ($_SESSION['role'] === 'admin') {
-        header("Location: dashboard-admin.php");
+        header("Location: admin/dashboard.php");
     } else {
-        header("Location: dashboard-user.php");
+        header("Location: user/dashboard.php");
     }
     exit();
 }
@@ -25,7 +25,7 @@ if (isset($_SESSION['user_id'])) {
         <div class="nav-auth">
             <a href="about.php" class="btn-nav">About SI-AKSI</a>
             <a href="login.php" class="btn-nav">Login</a>
-            <a href="register.php" class="btn-nav">Daftar</a>
+            <a href="user/register.php" class="btn-nav">Daftar</a>
         </div>
     </nav>
 
@@ -37,6 +37,12 @@ if (isset($_SESSION['user_id'])) {
             <div class="alert-box">
                 <strong>Catatan:</strong> Akses login hanya tersedia untuk akun yang telah diverifikasi dan diaktivasi secara manual oleh Administrator.
             </div>
+
+            <?php if(isset($_GET['timeout'])): ?>
+                <div class="alert-timeout">
+                    Session habis, silakan login kembali.
+                </div>
+            <?php endif; ?>
 
             <form id="form-login" action="../controllers/process.php?action=login" method="POST">
                 <div class="input-group">
@@ -50,7 +56,7 @@ if (isset($_SESSION['user_id'])) {
                 <button type="submit" class="login-btn">Masuk ke SI-AKSI</button>
             </form>
             
-            <p class="register-link">Belum memiliki akun? <a href="register.php">Daftar di sini</a></p>
+            <p class="register-link">Belum memiliki akun? <a href="../views/user/register.php">Daftar di sini</a></p>
         </div>
     </div>
 
