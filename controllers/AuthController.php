@@ -20,7 +20,7 @@ class AuthController {
             $confirm_password = $_POST['confirm_password'];
 
             if ($password !== $confirm_password) {
-                echo "<script>alert('Pendaftaran Gagal: Kata sandi dan konfirmasi tidak cocok!'); window.location.href='../views/register.php';</script>";
+                echo "<script>alert('Pendaftaran Gagal: Kata sandi dan konfirmasi tidak cocok!'); window.location.href='../views/user/register.php';</script>";
                 return;
             }
 
