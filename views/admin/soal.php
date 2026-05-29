@@ -1,4 +1,8 @@
 <?php
+require_once '../../config/auth_check.php';
+checkLogin();
+checkAdmin();
+
 require_once '../../controllers/AdminController.php';
 
 $database = new Database();
@@ -15,6 +19,8 @@ if (!empty($_GET['search'])) {
     $all_soal = $adminCtrl->getQuestions();
 }
 
+$categoryQuery = $db->query("SELECT * FROM categories ORDER BY id ASC");
+$categories = $categoryQuery->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <!DOCTYPE html>
@@ -35,7 +41,7 @@ if (!empty($_GET['search'])) {
             </a>
         </div>
         
-        <button type="button" class="btn-submit-custom" onclick="openModal()">
+        <button type="button" class="btn-submit-custom" onclick="openAddModal()">
             + Tambah Soal Baru
         </button>
 
@@ -55,8 +61,8 @@ if (!empty($_GET['search'])) {
 
         <div class="table-container">
             <div class="table-responsive">
-                <table class="table table-striped table-bordered align-middle">
-                    <thead class="table-dark text-center">
+                <table>
+                    <thead>
                         <tr>
                             <th>No</th>
                             <th>Kategori</th>
@@ -66,34 +72,64 @@ if (!empty($_GET['search'])) {
                             <th>Aksi</th>
                         </tr>
                     </thead>
+
                     <tbody>
                         <?php if(empty($all_soal)): ?>
-                            <tr><td colspan="6" class="text-center text-muted">Belum ada data soal di database.</td></tr>
+                            <tr>
+                                <td colspan="6">Belum ada data soal di database.</td>
+                            </tr>
                         <?php endif; ?>
                         
                         <?php $no = 1; foreach($all_soal as $s) : ?>
-                        <tr>
-                            <td class="text-center"><?= $no++; ?></td>
-                            <td class="text-center"><span class="badge bg-secondary"><?= htmlspecialchars($s['category_name'] ?? 'General'); ?></span></td>
-                            <td class="text-center">
-                                <span class="badge bg-dark"><?= ucfirst(htmlspecialchars($s['difficulty'] ?? 'easy')); ?></span>
-                            </td>
-                            <td class="question-column">
-                                <?= htmlspecialchars($s['question']); ?>
-                            </td>
-                            <td class="text-center">
-                                <?php if(($s['correct_answer'] ?? '') === 'A'): ?>
-                                    <span class="badge bg-success p-2">A. <?= htmlspecialchars($s['option_a'] ?? 'Fakta'); ?></span>
-                                <?php else: ?>
-                                    <span class="badge bg-danger p-2">B. <?= htmlspecialchars($s['option_b'] ?? 'Hoaks'); ?></span>
-                                <?php endif; ?>
-                            </td>
-                            <td class="text-center">
-                                <a href="../../controllers/AdminController.php?action=delete_question&id=<?= $s['id']; ?>" 
-                                    class="btn-submit-custom" 
-                                    onclick="return confirm('Yakin ingin menghapus soal ini?');">Hapus</a>
-                            </td>
-                        </tr>
+                            <tr>
+                                <td><?= $no++; ?></td>
+
+                                <td>
+                                    <?= htmlspecialchars($s['category_name'] ?? 'General'); ?>
+                                </td>
+
+                                <td>
+                                    <?= ucfirst(htmlspecialchars($s['difficulty'] ?? 'easy')); ?>
+                                </td>
+
+                                <td class="question-column">
+                                    <?= htmlspecialchars($s['question']); ?>
+                                </td>
+
+                                <td>
+                                    <?php if(($s['correct_answer'] ?? '') === 'A'): ?>
+                                        A. <?= htmlspecialchars($s['option_a'] ?? 'Fakta'); ?>
+                                    <?php else: ?>
+                                        B. <?= htmlspecialchars($s['option_b'] ?? 'Hoaks'); ?>
+                                    <?php endif; ?>
+                                </td>
+
+                                <td>
+                                    <div class="table-action">
+                                        <button
+                                            type="button"
+                                            class="btn-action-edit edit-question-btn"
+                                            data-id="<?= htmlspecialchars($s['id'], ENT_QUOTES, 'UTF-8'); ?>"
+                                            data-category-id="<?= htmlspecialchars($s['category_id'], ENT_QUOTES, 'UTF-8'); ?>"
+                                            data-difficulty="<?= htmlspecialchars($s['difficulty'], ENT_QUOTES, 'UTF-8'); ?>"
+                                            data-question="<?= htmlspecialchars($s['question'], ENT_QUOTES, 'UTF-8'); ?>"
+                                            data-correct-answer="<?= htmlspecialchars($s['correct_answer'], ENT_QUOTES, 'UTF-8'); ?>"
+                                            data-explanation="<?= htmlspecialchars($s['explanation'], ENT_QUOTES, 'UTF-8'); ?>"
+                                            data-reference-source="<?= htmlspecialchars($s['reference_source'], ENT_QUOTES, 'UTF-8'); ?>"
+                                        >
+                                            Edit
+                                        </button>
+
+                                        <a
+                                            href="../../controllers/AdminController.php?action=delete_question&id=<?= $s['id']; ?>"
+                                            class="btn-action-delete"
+                                            onclick="return confirm('Yakin ingin menghapus soal ini?');"
+                                        >
+                                            Hapus
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
                         <?php endforeach; ?>
                     </tbody>
                 </table>
@@ -105,24 +141,29 @@ if (!empty($_GET['search'])) {
         <div class="custom-modal-content">
             <div class="custom-modal-header">
                 <h3>Tambah Soal Baru</h3>
-                <span class="close-modal" onclick="closeModal()">&times;</span>
+                <span class="close-modal" onclick="closeAddModal()">&times;</span>
             </div>
 
             <form action="../../controllers/AdminController.php" method="POST">
                 <input type="hidden" name="action" value="add_question">
+
                 <div class="input-group">
                     <label>Kategori</label>
                     <select name="category_id" required>
-                        <option value="1">Hardware</option>
-                        <option value="2">Software</option>
-                        <option value="3">Cybersecurity</option>
-                        <option value="4">AI</option>
+                        <option value="">Pilih kategori</option>
+
+                        <?php foreach($categories as $cat): ?>
+                            <option value="<?= htmlspecialchars($cat['id']); ?>">
+                                <?= htmlspecialchars($cat['name']); ?>
+                            </option>
+                        <?php endforeach; ?>
                     </select>
                 </div>
 
                 <div class="input-group">
                     <label>Tingkat Kesulitan</label>
                     <select name="difficulty" required>
+                        <option value="">Pilih tingkat kesulitan</option>
                         <option value="easy">Easy</option>
                         <option value="medium">Medium</option>
                         <option value="hard">Hard</option>
@@ -135,20 +176,11 @@ if (!empty($_GET['search'])) {
                 </div>
 
                 <div class="input-group">
-                    <label>Opsi A</label>
-                    <input type="text" name="option_a" value="Fakta" required>
-                </div>
-
-                <div class="input-group">
-                    <label>Opsi B</label>
-                    <input type="text" name="option_b" value="Hoaks" required>
-                </div>
-
-                <div class="input-group">
                     <label>Jawaban Benar</label>
                     <select name="correct_answer" required>
-                        <option value="A">Opsi A (Fakta)</option>
-                        <option value="B">Opsi B (Hoaks)</option>
+                        <option value="">Pilih jawaban benar</option>
+                        <option value="A">Fakta</option>
+                        <option value="B">Hoaks</option>
                     </select>
                 </div>
 
@@ -169,22 +201,116 @@ if (!empty($_GET['search'])) {
         </div>
     </div>
 
+    <div id="modalEditSoal" class="custom-modal">
+        <div class="custom-modal-content">
+            <div class="custom-modal-header">
+                <h3>Edit Soal</h3>
+                <span class="close-modal" onclick="closeEditModal()">&times;</span>
+            </div>
+
+            <form action="../../controllers/AdminController.php" method="POST">
+                <input type="hidden" name="action" value="update_question">
+                <input type="hidden" name="id" id="edit_id">
+
+                <div class="input-group">
+                    <label>Kategori</label>
+                    <select name="category_id" id="edit_category_id" required>
+                        <option value="">Pilih kategori</option>
+
+                        <?php foreach($categories as $cat): ?>
+                            <option value="<?= htmlspecialchars($cat['id']); ?>">
+                                <?= htmlspecialchars($cat['name']); ?>
+                            </option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label>Tingkat Kesulitan</label>
+                    <select name="difficulty" id="edit_difficulty" required>
+                        <option value="">Pilih tingkat kesulitan</option>
+                        <option value="easy">Easy</option>
+                        <option value="medium">Medium</option>
+                        <option value="hard">Hard</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label>Pertanyaan</label>
+                    <textarea name="question" id="edit_question" rows="3" required></textarea>
+                </div>
+
+                <div class="input-group">
+                    <label>Jawaban Benar</label>
+                    <select name="correct_answer" id="edit_correct_answer" required>
+                        <option value="">Pilih jawaban benar</option>
+                        <option value="A">Fakta</option>
+                        <option value="B">Hoaks</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label>Penjelasan Edukasi</label>
+                    <textarea name="explanation" id="edit_explanation" rows="3" required></textarea>
+                </div>
+
+                <div class="input-group">
+                    <label>Sumber Referensi</label>
+                    <input type="text" name="reference_source" id="edit_reference_source" required>
+                </div>
+
+                <button type="submit" class="btn-submit-custom">
+                    Update Soal
+                </button>
+            </form>
+        </div>
+    </div>
+
     <script>
-    function openModal() {
-        document.getElementById('modalTambahSoal').style.display = 'flex';
-    }
-
-    function closeModal() {
-        document.getElementById('modalTambahSoal').style.display = 'none';
-    }
-
-    window.onclick = function(e) {
-        const modal = document.getElementById('modalTambahSoal');
-
-        if (e.target === modal) {
-            closeModal();
+        function openAddModal() {
+            document.getElementById('modalTambahSoal').style.display = 'flex';
         }
-    }
+
+        function closeAddModal() {
+            document.getElementById('modalTambahSoal').style.display = 'none';
+        }
+
+        function openEditModal() {
+            document.getElementById('modalEditSoal').style.display = 'flex';
+        }
+
+        function closeEditModal() {
+            document.getElementById('modalEditSoal').style.display = 'none';
+        }
+
+        const editButtons = document.querySelectorAll('.edit-question-btn');
+
+        editButtons.forEach(function(button) {
+            button.addEventListener('click', function() {
+                document.getElementById('edit_id').value = this.dataset.id;
+                document.getElementById('edit_category_id').value = this.dataset.categoryId;
+                document.getElementById('edit_difficulty').value = this.dataset.difficulty;
+                document.getElementById('edit_question').value = this.dataset.question;
+                document.getElementById('edit_correct_answer').value = this.dataset.correctAnswer;
+                document.getElementById('edit_explanation').value = this.dataset.explanation;
+                document.getElementById('edit_reference_source').value = this.dataset.referenceSource;
+
+                openEditModal();
+            });
+        });
+
+        window.onclick = function(e) {
+            const addModal = document.getElementById('modalTambahSoal');
+            const editModal = document.getElementById('modalEditSoal');
+
+            if (e.target === addModal) {
+                closeAddModal();
+            }
+
+            if (e.target === editModal) {
+                closeEditModal();
+            }
+        }
     </script>
 </body>
 </html>
