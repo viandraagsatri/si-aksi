@@ -32,7 +32,7 @@ session_start();
                 <a href="../controllers/process.php?action=logout" class="btn-nav">Logout</a>
             <?php else: ?>
                 <a href="login.php" class="btn-nav">Login</a>
-                <a href="register.php" class="btn-nav">Daftar</a>
+                <a href="user/register.php" class="btn-nav">Daftar</a>
             <?php endif; ?>
         </div>
     </nav>
