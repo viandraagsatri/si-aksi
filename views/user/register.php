@@ -34,7 +34,7 @@ if (isset($_SESSION['user_id'])) {
             <h2>Buat Akun Baru</h2>
             <p class="subtitle">Bergabunglah bersama komunitas literasi teknologi kami.</p>
 
-            <form action="../controllers/process.php?action=register" method="POST">
+            <form action="../../controllers/process.php?action=register" method="POST">
                 <div class="input-group">
                     <label for="fullname">Nama Lengkap</label>
                     <input type="text" id="fullname" name="fullname" placeholder="Masukkan nama lengkap" required>
