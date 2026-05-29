@@ -974,3 +974,42 @@ td:last-child {
         font-size: 40px;
     }
 }
+
+.table-action {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: flex-start;
+}
+
+.btn-action-edit,
+.btn-action-delete {
+    display: inline-block;
+    min-width: 72px;
+    padding: 8px 14px;
+    border-radius: 10px;
+    border: none;
+    text-align: center;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.2s ease;
+    box-sizing: border-box;
+}
+
+.btn-action-edit {
+    background-color: #e9a7a1;
+    color: #ffffff;
+}
+
+.btn-action-delete {
+    background-color: #d98c86;
+    color: #ffffff;
+}
+
+.btn-action-edit:hover,
+.btn-action-delete:hover {
+    opacity: 0.85;
+    transform: translateY(-1px);
+}
