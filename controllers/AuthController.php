@@ -25,20 +25,20 @@ class AuthController {
             }
 
             if (strlen($password) < 8) {
-                echo "<script>alert('Pendaftaran Gagal: Kata sandi minimal 8 karakter!'); window.location.href='../views/register.php';</script>";
+                echo "<script>alert('Pendaftaran Gagal: Kata sandi minimal 8 karakter!'); window.location.href='../views/user/register.php';</script>";
                 return;
             }
 
             $existingUser = $this->userModel->login($email);
             if ($existingUser) {
-                echo "<script>alert('Pendaftaran Gagal: Email sudah terdaftar!'); window.location.href='../views/register.php';</script>";
+                echo "<script>alert('Pendaftaran Gagal: Email sudah terdaftar!'); window.location.href='../views/user/register.php';</script>";
                 return;
             }
 
             if ($this->userModel->register($fullname, $email, $password)) {
                 echo "<script>alert('Pendaftaran Berhasil! Menunggu verifikasi admin.'); window.location.href='../views/login.php';</script>";
             } else {
-                echo "<script>alert('Pendaftaran Gagal: Terjadi kesalahan sistem.'); window.location.href='../views/register.php';</script>";
+                echo "<script>alert('Pendaftaran Gagal: Terjadi kesalahan sistem.'); window.location.href='../views/user/register.php';</script>";
             }
         }
     }
