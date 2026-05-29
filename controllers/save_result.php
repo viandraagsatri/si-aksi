@@ -1,34 +1,47 @@
 <?php
-session_start();
+require_once '../config/auth_check.php';
+checkLogin();
+
 include '../koneksi.php';
 
-if (!isset($_SESSION['user_id'])) {
-    echo json_encode(['success' => false]);
-    exit;
-}
-
-mysqli_query($koneksi, "CREATE TABLE IF NOT EXISTS quiz_results (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    user_id INT NOT NULL,
-    fullname VARCHAR(255),
-    category VARCHAR(100),
-    score INT,
-    total_questions INT,
-    status ENUM('Pending','Valid') DEFAULT 'Pending',
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-)");
-
-$data = json_decode(file_get_contents('php://input'), true);
+header('Content-Type: application/json');
 
 $user_id = $_SESSION['user_id'];
-$fullname = $_SESSION['fullname'];
-$category = mysqli_real_escape_string($koneksi, $data['category']);
-$score = (int)$data['score'];
-$total = (int)$data['total'];
 
-$query = "INSERT INTO quiz_results (user_id, category_id, score, total_questions) VALUES (?, ?, ?, ?)";
-VALUES('$user_id','$fullname','$category','$score','$total')";
+$category_id = $_POST['category_id'] ?? '';
+$score = $_POST['score'] ?? '';
+$total = $_POST['total'] ?? '';
 
-$insert = mysqli_query($koneksi, $query);
+if ($category_id === '' || $score === '' || $total === '') {
+    echo json_encode([
+        'success' => false,
+        'message' => 'Data hasil kuis tidak lengkap.'
+    ]);
+    exit();
+}
 
-echo json_encode(['success' => $insert]);
+$category_id = (int) $category_id;
+$score = (int) $score;
+$total = (int) $total;
+
+$query = "INSERT INTO quiz_results (user_id, category_id, score, total_questions)
+          VALUES (?, ?, ?, ?)";
+
+$stmt = mysqli_prepare($koneksi, $query);
+
+if (!$stmt) {
+    echo json_encode([
+        'success' => false,
+        'message' => 'Query gagal dipersiapkan.'
+    ]);
+    exit();
+}
+
+mysqli_stmt_bind_param($stmt, "iiii", $user_id, $category_id, $score, $total);
+
+$success = mysqli_stmt_execute($stmt);
+
+echo json_encode([
+    'success' => $success
+]);
+?>
