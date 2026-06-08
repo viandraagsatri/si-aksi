@@ -21,11 +21,11 @@ if (isset($_SESSION['user_id'])) {
 </head>
 <body>
     <nav class="navbar">
-        <a href="../login.php" class="nav-brand">SI-AKSI</a>
+        <a href="../../index.php" class="nav-brand">SI-AKSI</a>
         <div class="nav-auth">
-            <a href="../about.php" class="btn-nav">About SI-AKSI</a>
-            <a href="../login.php" class="btn-nav">Login</a>
-            <a href="register.php" class="btn-nav">Daftar</a>
+            <a href="../../views/about.php" class="btn-nav">About SI-AKSI</a>
+            <a href="../../views/login.php" class="btn-nav">Login</a>
+            <a href="../../views/user/register.php" class="btn-nav">Daftar</a>
         </div>
     </nav>
 
@@ -54,7 +54,7 @@ if (isset($_SESSION['user_id'])) {
                 <button type="submit" class="btn-submit">Daftar Sekarang</button>
             </form>
             
-            <p class="register-link">Sudah punya akun? <a href="../login.php">Login di sini</a></p>
+            <p class="register-link">Sudah punya akun? <a href="../../views/login.php">Login di sini</a></p>
         </div>
     </div>
 </body>
