@@ -158,6 +158,7 @@ class AdminController {
             </script>";
             exit();
         }
+
         if (isset($_GET['action']) && $_GET['action'] === 'approve' && isset($_GET['id'])) {
             $this->requireAdmin();
 
@@ -174,6 +175,7 @@ class AdminController {
                 window.location.href='../views/admin/users.php';
             </script>";
             exit();
+        }
     }
 
     public function searchQuestions($keyword) {

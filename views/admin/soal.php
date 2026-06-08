@@ -266,51 +266,6 @@ $categories = $categoryQuery->fetchAll(PDO::FETCH_ASSOC);
         </div>
     </div>
 
-    <script>
-        function openAddModal() {
-            document.getElementById('modalTambahSoal').style.display = 'flex';
-        }
-
-        function closeAddModal() {
-            document.getElementById('modalTambahSoal').style.display = 'none';
-        }
-
-        function openEditModal() {
-            document.getElementById('modalEditSoal').style.display = 'flex';
-        }
-
-        function closeEditModal() {
-            document.getElementById('modalEditSoal').style.display = 'none';
-        }
-
-        const editButtons = document.querySelectorAll('.edit-question-btn');
-
-        editButtons.forEach(function(button) {
-            button.addEventListener('click', function() {
-                document.getElementById('edit_id').value = this.dataset.id;
-                document.getElementById('edit_category_id').value = this.dataset.categoryId;
-                document.getElementById('edit_difficulty').value = this.dataset.difficulty;
-                document.getElementById('edit_question').value = this.dataset.question;
-                document.getElementById('edit_correct_answer').value = this.dataset.correctAnswer;
-                document.getElementById('edit_explanation').value = this.dataset.explanation;
-                document.getElementById('edit_reference_source').value = this.dataset.referenceSource;
-
-                openEditModal();
-            });
-        });
-
-        window.onclick = function(e) {
-            const addModal = document.getElementById('modalTambahSoal');
-            const editModal = document.getElementById('modalEditSoal');
-
-            if (e.target === addModal) {
-                closeAddModal();
-            }
-
-            if (e.target === editModal) {
-                closeEditModal();
-            }
-        }
-    </script>
+    <script src="../../public/js/script.js"></script>
 </body>
 </html>
