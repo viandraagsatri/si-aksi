@@ -14,24 +14,51 @@ checkLogin();
 </head>
 <body class="user-dashboard">
     <nav class="navbar">
-        <a href="dashboard.php" class="nav-brand">SI-AKSI</a>
-        <ul class="nav-links">
-            <li><a href="../about.php" class="btn-nav">About SI-AKSI</a></li>
-            <li>
-                <a href="#" class="btn-nav">Kategori ▾</a>
-                <div class="dropdown-content">
-                    <a href="quiz.php?kategori=hardware">Hardware</a>
-                    <a href="quiz.php?kategori=software">Software & Internet</a>
-                    <a href="quiz.php?kategori=cybersecurity">Cyber Security</a>
-                    <a href="quiz.php?kategori=ai">Artificial Intelligence</a>
-                </div>
-            </li>
-        </ul>
-        <div class="nav-auth">
-            <span>Halo, <?php echo htmlspecialchars($_SESSION['fullname']); ?>!</span>
-            <a href="../../controllers/process.php?action=logout" class="btn-nav">Logout</a>
+    <a href="dashboard.php" class="nav-brand">SI-AKSI</a>
+
+    <div class="nav-desktop">
+        <a href="../about.php" class="btn-nav">About SI-AKSI</a>
+
+        <div class="nav-dropdown">
+            <a href="#" class="btn-nav">Kategori ▾</a>
+
+            <div class="dropdown-content">
+                <a href="quiz.php?kategori=hardware">Hardware</a>
+                <a href="quiz.php?kategori=software">Software & Internet</a>
+                <a href="quiz.php?kategori=cybersecurity">Cyber Security</a>
+                <a href="quiz.php?kategori=ai">Artificial Intelligence</a>
+            </div>
         </div>
-    </nav>
+    </div>
+
+    <div class="nav-user-area">
+        <span class="nav-user-name">
+            Halo, <?php echo htmlspecialchars($_SESSION['fullname']); ?>!
+        </span>
+
+        <a href="../../controllers/process.php?action=logout" class="btn-nav nav-logout-desktop">
+            Logout
+        </a>
+
+        <input type="checkbox" id="menu-toggle" class="menu-toggle">
+        <label for="menu-toggle" class="hamburger">☰</label>
+    </div>
+
+    <div class="nav-mobile-menu">
+        <a href="../about.php" class="btn-nav">About SI-AKSI</a>
+
+        <details class="mobile-dropdown">
+            <summary>Kategori</summary>
+
+            <a href="quiz.php?kategori=hardware">Hardware</a>
+            <a href="quiz.php?kategori=software">Software & Internet</a>
+            <a href="quiz.php?kategori=cybersecurity">Cyber Security</a>
+            <a href="quiz.php?kategori=ai">Artificial Intelligence</a>
+        </details>
+
+        <a href="../../controllers/process.php?action=logout" class="btn-nav">Logout</a>
+    </div>
+</nav>
 
     <main class="dashboard-container">
         <div class="welcome-banner">
