@@ -21,9 +21,9 @@ if (isset($_SESSION['user_id'])) {
 </head>
 <body>
     <nav class="navbar">
-        <a href="index.php" class="nav-brand">SI-AKSI</a>  
+        <a href="../index.php" class="nav-brand">SI-AKSI</a>  
         <div class="nav-auth">
-            <a href="about.php" class="btn-nav">About SI-AKSI</a>
+            <a href="../views/about.php" class="btn-nav">About SI-AKSI</a>
             <a href="login.php" class="btn-nav">Login</a>
             <a href="user/register.php" class="btn-nav">Daftar</a>
         </div>
