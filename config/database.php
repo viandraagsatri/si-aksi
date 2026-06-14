@@ -1,17 +1,10 @@
 <?php
 class Database {
-    private $host;
-    private $db_name;
-    private $username;
-    private $password;
+    private $host = "localhost";
+    private $db_name = "si_aksi";
+    private $username = "root";
+    private $password = "";
     public $conn;
-
-    public function __construct() {
-        $this->host = getenv('DB_HOST') ?: "localhost";
-        $this->db_name = getenv('DB_NAME') ?: "si_aksi";
-        $this->username = getenv('DB_USER') ?: "root";
-        $this->password = getenv('DB_PASSWORD') ?: "";
-    }
 
     public function getConnection() {
         $this->conn = null;
